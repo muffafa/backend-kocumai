@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Question & Choice</title>
+  </head>
+  <body>
+    <h1>Question</h1>
+
+    {% for question in question_list %}
+    <div>
+      <h2>{{ question.question_text }}</h2>
+      <ul>
+        {% for choice in question.choice_set.all %}
+        <li>
+          <input
+            type="radio"
+            name="choice_{{ question.id }}"
+            value="{{ choice.id }}"
+          />
+          {{ choice.choice_text }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </body>
+</html>

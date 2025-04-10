@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from apps.aichatbot.models import Question, Choice
 
 # Create your views here.
 def index(request):
@@ -8,3 +9,14 @@ def index(request):
 def chat(request):
     msgdict = { "msg": "Hello, world. You're at the Aichatbot chat." }
     return render(request, "aichatbot/chat.html", msgdict)
+
+def question(request):
+    question_list = Question.objects.all()
+ 
+    choice_list = Choice.objects.all()
+    context = {
+        'question_list': question_list,
+        'choice_list': choice_list,
+    }
+   
+    return render(request, "aichatbot/question.html", context)
