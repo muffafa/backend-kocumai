@@ -6,13 +6,14 @@ import django
 django.setup()
 
 import random
-from apps.aichatbot.models import Question, Choice
+from apps.aichatbot.models import Question, Choice, User
 from faker import Faker
 
 fakegen = Faker()
 def populate(n=5):
     questions = []
     choices = []
+    users = []
     for _ in range(n):
         question_text = fakegen.sentence()
         question = Question.objects.create(question_text=question_text)
@@ -27,9 +28,22 @@ def populate(n=5):
             )
             choices.append(choice)
 
-    return questions, choices
+    for _ in range(n):
+        first_name = fakegen.first_name()
+        last_name = fakegen.last_name()
+        email = fakegen.email()
+        user = User.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            email=email
+        )
+        users.append(user)
+
+    return questions, choices, users
+# This script populates the database with fake data for testing purposes.
 
 if __name__ == '__main__':
     n = 10  # Number of questions to create
     populate(n)
     print(f"Created {n} questions and their choices.")
+    print(f"Created {n} users.")

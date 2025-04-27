@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from apps.aichatbot.models import Question, Choice
+from apps.aichatbot.models import Question, Choice, User
 
 # Create your views here.
 def index(request):
@@ -20,3 +20,10 @@ def question(request):
     }
    
     return render(request, "aichatbot/question.html", context)
+
+def user(request):
+    user_list = User.objects.all()
+    context = {
+        'user_list': user_list,
+    }
+    return render(request, "aichatbot/user.html", context)

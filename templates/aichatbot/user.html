@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users</title>
+  </head>
+  <body>
+    <h1>User List</h1>
+
+    <div>
+      <ol>
+        {% for user in user_list %}
+        <li>User Info:</li>
+        <ul>
+          <li>Email: {{ user.email }}</li>
+          <li>First Name: {{ user.first_name }}</li>
+          <li>Last Name: {{ user.last_name }}</li>
+        </ul>
+        {% endfor %}
+      </ol>
+    </div>
+  </body>
+</html>
