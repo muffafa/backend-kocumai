@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('aichatbot/', include('apps.aichatbot.urls')),
+    path('basic_app/', include('apps.basic_app.urls')),
     # index 
     path('', views.index, name='index')
 ]
