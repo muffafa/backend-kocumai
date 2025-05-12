@@ -23,7 +23,7 @@ MEDIA_DIR = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-^@s0&zzm!l&a0q)hipovu5#*8d6p@rny=e*i0zls04hgw4-f30'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['muffafa.pythonanywhere.com']
 
