@@ -1,0 +1,26 @@
+{% extends "basic_app/base.html" %} {% block body_block %}
+
+<div class="jumbotron">
+  <h1 class="display-4">School Details</h1>
+  <p class="lead">This is a School Details page.</p>
+
+  <h2>School Name: {{ school.name }}</h2>
+  <h3>City: {{ school.city }}</h3>
+  <h3>Address : {{ school.address }}</h3>
+  <h3>Phone Number : {{ school.phone_number }}</h3>
+  <h3>Website : {{ school.website }}</h3>
+
+  <br />
+  <h3>Students:</h3>
+  {% if school.students.all %}
+  <ul>
+    {% for student in school.students.all %}
+    <li>{{ student}}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No students available.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

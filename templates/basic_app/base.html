@@ -41,6 +41,11 @@
           <li class="nav-item {% if nbar == 'test' %}active{% endif %}">
             <a class="nav-link" href="{% url 'basic_app:test' %}">Test</a>
           </li>
+          <li class="nav-item {% if nbar == 'school_list' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'basic_app:school_list' %}"
+              >School List</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}

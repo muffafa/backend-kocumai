@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, ListView, DetailView
+from .models import School, Student
 
 # Create your views here.
 
@@ -73,4 +74,23 @@ class TestView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["nbar"] = "test"
         context["injected_content"] = "This is injected content"
+        return context
+    
+class SchoolListView(ListView):
+    model = School
+    template_name = "basic_app/school_list.html"
+    context_object_name = "schools"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["nbar"] = "school_list"
+        return context
+    
+class SchoolDetailView(DetailView):
+    model = School
+    template_name = "basic_app/school_detail.html"
+    context_object_name = "school"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
