@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import View, TemplateView
 
 # Create your views here.
 
@@ -63,3 +64,13 @@ def user_login(request):
             return HttpResponse("Invalid login")
     else:
         return render(request, "basic_app/login.html", {"nbar": "login"})
+    
+
+class TestView(TemplateView):
+    template_name = "basic_app/test.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["nbar"] = "test"
+        context["injected_content"] = "This is injected content"
+        return context
