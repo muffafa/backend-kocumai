@@ -1,0 +1,16 @@
+{% extends "basic_app/base.html" %} {% block body_block %}
+
+<div class="jumbotron">
+  {% if not form.instance.pk %}
+  <h1>Creating a new school</h1>
+  {% else %}
+  <h1>Editing {{ form.instance.name }}</h1>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

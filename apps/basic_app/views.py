@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from .forms import UserForm, UserProfileInfoForm
 
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import School, Student
 
 # Create your views here.
@@ -91,6 +91,22 @@ class SchoolDetailView(DetailView):
     template_name = "basic_app/school_detail.html"
     context_object_name = "school"
     
+class SchoolCreateView(CreateView):
+    model = School
+    template_name = "basic_app/school_form.html"
+    fields = ["name", "city", "address", "phone_number", "website"]
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["nbar"] = "school_create"
         return context
+    
+class SchoolUpdateView(UpdateView):
+    model = School
+    template_name = "basic_app/school_form.html"
+    fields = ["name", "city", "address", "phone_number", "website"]
+
+class SchoolDeleteView(DeleteView):
+    model = School
+    template_name = "basic_app/school_confirm_delete.html"
+    success_url = reverse_lazy("basic_app:school_list")

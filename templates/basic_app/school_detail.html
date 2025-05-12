@@ -21,6 +21,19 @@
   {% else %}
   <p>No students available.</p>
   {% endif %}
+
+  <div class="container">
+    <a
+      href="{% url 'basic_app:update_school' school.id %}"
+      class="btn btn-warning"
+      >Update School</a
+    >
+    <a
+      href="{% url 'basic_app:delete_school' school.id %}"
+      class="btn btn-danger"
+      >Delete School</a
+    >
+  </div>
 </div>
 
 {% endblock %}

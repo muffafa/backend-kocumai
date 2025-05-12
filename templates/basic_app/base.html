@@ -46,6 +46,10 @@
               >School List</a
             >
           </li>
+          <li class="nav-item {% if nbar == 'school_create' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'basic_app:create_school' %}"
+              >Create School</a
+            >
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
